@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Fila de Atendimento</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .painel { border: 1px solid #ccc; padding: 15px; margin-top: 20px; border-radius: 5px; }
+        button { padding: 8px 12px; cursor: pointer; margin-top: 10px; }
+        input { padding: 8px; }
+    </style>
+</head>
+<body>
+
+    <h2>Controle de Fila</h2>
+    
+    <!-- Formulário de Entrada -->
+    <label>Nome do Cliente:</label>
+    <input type="text" id="nomeCliente" placeholder="Digite o nome">
+    <button onclick="entrarNaFila()">Entrar na Fila</button>
+    <button onclick="atender()" style="background-color: #4CAF50; color: white;">Atender Próximo</button>
+
+    <!-- Exibição do Vetor 1: Fila Atual -->
+    <div class="painel">
+        <h3>Fila Atual</h3>
+        <ul id="listaFila"></ul>
+    </div>
+
+    <!-- Exibição do Vetor 2: Histórico de Atendimentos -->
+    <div class="painel">
+        <h3>Histórico de Atendimentos</h3>
+        <ul id="listaHistorico"></ul>
+    </div>
+
+    <script>
+        // 1. Criando os dois vetores exigidos
+        let fila = [];
+        let historico = [];
+
+        // Configuração do Intl.DateTimeFormat para extrair apenas a hora (para a fila)
+        const formatadorHora = new Intl.DateTimeFormat('pt-BR', {
+            hour: '2-digit', minute: '2-digit', second: '2-digit'
+        });
+
+        // Configuração do Intl.DateTimeFormat para data e hora completas (para o histórico)
+        const formatadorDataHora = new Intl.DateTimeFormat('pt-BR', {
+            dateStyle: 'short', timeStyle: 'medium'
+        });
+
+        // Função para adicionar pessoa na fila
+        function entrarNaFila() {
+            let nome = document.getElementById("nomeCliente").value;
+            
+            if (nome === "") {
+                alert("Por favor, digite um nome!");
+                return;
+            }
+
+            // Pega o tempo exato em milissegundos usando Date.now()
+            let momentoEntrada = Date.now();
+
+            // Adiciona no FINAL do vetor da fila usando push()
+            fila.push({
+                nome: nome,
+                tempoEntradaOriginal: momentoEntrada, // guardamos o original para fazer a conta depois
+                horaEntradaFormatada: formatadorHora.format(momentoEntrada) // Formata apenas HH:MM:SS
+            });
+
+            // Limpa o campo de texto e atualiza a tela
+            document.getElementById("nomeCliente").value = "";
+            atualizarTela();
+        }
+
+        // Função para atender quem está no início da fila
+        function atender() {
+            if (fila.length === 0) {
+                alert("A fila está vazia!");
+                return;
+            }
+
+            // Remove a pessoa do INÍCIO da fila usando shift()
+            let pessoaAtendida = fila.shift();
+            
+            // Pega o tempo exato do atendimento
+            let momentoAtendimento = Date.now();
+
+            // Calcula quanto tempo a pessoa esperou (em segundos)
+            // Date.now() retorna milissegundos, então dividimos por 1000
+            let tempoEsperaSegundos = Math.floor((momentoAtendimento - pessoaAtendida.tempoEntradaOriginal) / 1000);
+
+            // Adiciona as informações no vetor de histórico
+            historico.push({
+                nome: pessoaAtendida.nome,
+                dataHoraEntrada: formatadorDataHora.format(pessoaAtendida.tempoEntradaOriginal),
+                dataHoraAtendimento: formatadorDataHora.format(momentoAtendimento),
+                tempoEspera: tempoEsperaSegundos
+            });
+
+            // Atualiza a exibição na tela
+            atualizarTela();
+        }
+
+        // Função para exibir os dados dos dois vetores na página
+        function atualizarTela() {
+            // Atualiza a lista da Fila Atual
+            let htmlFila = "";
+            for (let item of fila) {
+                htmlFila += `<li><strong>${item.nome}</strong> - Entrou às: ${item.horaEntradaFormatada}</li>`;
+            }
+            document.getElementById("listaFila").innerHTML = htmlFila;
+
+            // Atualiza a lista do Histórico
+            let htmlHistorico = "";
+            for (let item of historico) {
+                htmlHistorico += `<li><strong>${item.nome}</strong> | Entrada: ${item.dataHoraEntrada} | Atendimento: ${item.dataHoraAtendimento} | Espera: ${item.tempoEspera} segundos</li>`;
+            }
+            document.getElementById("listaHistorico").innerHTML = htmlHistorico;
+        }
+    </script>
+</body>
+</html>

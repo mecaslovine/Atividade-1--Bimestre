@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Dado o array [10, 15, 20, 25, 30], use filter para criar um array 
+        // apenas com números pares.
+        let numeros = [10, 15, 20, 25, 30];
+        let numerosPares = numeros.filter(function(numeroAtual) {
+            return numeroAtual % 2 == 0; 
+        });
+        console.log("Original: ", numeros);
+        console.log("Apenas Pares: ", numerosPares);
+    </script>
+</body>
+</html>

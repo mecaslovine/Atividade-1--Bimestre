@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Dado o array [2, 5, 8, 11, 14], use filter para selecionar 
+        // apenas os números maiores que 5 e depois map para multiplicá-los por 2.
+        // Mostre o resultado final. 
+        let numeros = [2, 5, 8, 11, 14];
+        let resultadoFinal = numeros
+            .filter(function(numero) {
+                return numero > 5; // Peneira: mantém apenas os maiores que 5
+            })
+            .map(function(numero) {
+                return numero * 2; // Transformação: multiplica o que sobrou por 2
+            });
+            console.log("Resultado final:", resultadoFinal);
+    </script>
+</body>
+</html>

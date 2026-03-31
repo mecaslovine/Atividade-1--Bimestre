@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Crie um objeto livro com título e autor. 
+        //Adicione dinamicamente a propriedade ano. 
+        //Altere o título. 
+        //Exclua a propriedade autor. 
+        //Mostre o objeto atualizado no console.
+
+        let livro = {
+        titulo: "As aventuras de Tung Tung Sahur",
+        autor: "H. P. LOVECRAFT"
+        };
+        livro.ano = 1937;
+        livro.titulo = "Empreitadas e Balelas";
+        delete livro.autor;
+        console.log(livro);
+    </script>
+</body>
+</html>

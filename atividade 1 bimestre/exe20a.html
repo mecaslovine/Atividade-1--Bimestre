@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercícios 5 ao 9 - Formulários</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .exercicio { margin-bottom: 30px; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        input { padding: 5px; margin-right: 10px; }
+        button { padding: 5px 10px; cursor: pointer; }
+        p { font-weight: bold; color: #333; }
+    </style>
+</head>
+<body>
+
+    <h1>Resolução da Questão 20 (Exercícios 5 ao 9)</h1>
+
+    <!-- EXERCÍCIO 5 -->
+    <div class="exercicio">
+        <h3>5. Verificação de Idade</h3>
+        <input type="number" id="inputEx5" placeholder="Digite a idade">
+        <button onclick="resolverEx5()">Verificar Idade</button>
+        <p id="resEx5"></p>
+    </div>
+
+    <!-- EXERCÍCIO 6 -->
+    <div class="exercicio">
+        <h3>6. Número Par ou Ímpar</h3>
+        <input type="number" id="inputEx6" placeholder="Digite um número">
+        <button onclick="resolverEx6()">Verificar Par/Ímpar</button>
+        <p id="resEx6"></p>
+    </div>
+
+    <!-- EXERCÍCIO 7 -->
+    <div class="exercicio">
+        <h3>7. Nota de Aluno</h3>
+        <input type="number" id="inputEx7" placeholder="Digite a nota (0 a 10)">
+        <button onclick="resolverEx7()">Verificar Situação</button>
+        <p id="resEx7"></p>
+    </div>
+
+    <!-- EXERCÍCIO 8 -->
+    <div class="exercicio">
+        <h3>8. Operador Ternário (Positivo, Negativo ou Zero)</h3>
+        <input type="number" id="inputEx8" placeholder="Digite um número">
+        <button onclick="resolverEx8()">Verificar Sinal</button>
+        <p id="resEx8"></p>
+    </div>
+
+    <!-- EXERCÍCIO 9 -->
+    <div class="exercicio">
+        <h3>9. Tabuada com for</h3>
+        <input type="number" id="inputEx9" placeholder="Digite um número">
+        <button onclick="resolverEx9()">Gerar Tabuada</button>
+        <p id="resEx9"></p>
+    </div>
+
+    <script>
+        // Lógica do Exercício 5: Verificação de Idade
+        function resolverEx5() {
+            let idade = document.getElementById("inputEx5").value;
+            let resultado = "";
+            
+            if (idade < 12) {
+                resultado = "Criança";
+            } else if (idade >= 12 && idade <= 17) {
+                resultado = "Adolescente";
+            } else {
+                resultado = "Adulto";
+            }
+            
+            document.getElementById("resEx5").innerText = "Resultado: " + resultado;
+        }
+
+        // Lógica do Exercício 6: Número Par ou Ímpar
+        function resolverEx6() {
+            let numero = document.getElementById("inputEx6").value;
+            let resultado = "";
+            
+            if (numero % 2 == 0) {
+                resultado = "O número é Par";
+            } else {
+                resultado = "O número é Ímpar";
+            }
+            
+            document.getElementById("resEx6").innerText = "Resultado: " + resultado;
+        }
+
+        // Lógica do Exercício 7: Nota de Aluno
+        function resolverEx7() {
+            let nota = document.getElementById("inputEx7").value;
+            let resultado = "";
+            
+            if (nota >= 7) {
+                resultado = "Aprovado";
+            } else if (nota >= 5 && nota < 7) {
+                resultado = "Recuperação";
+            } else {
+                resultado = "Reprovado";
+            }
+            
+            document.getElementById("resEx7").innerText = "Resultado: " + resultado;
+        }
+
+        // Lógica do Exercício 8: Operador Ternário
+        function resolverEx8() {
+            let numero = document.getElementById("inputEx8").value;
+            
+            // Verificação em uma única linha com operador ternário
+            let resultado = (numero > 0) ? "Positivo" : (numero < 0) ? "Negativo" : "Zero";
+            
+            document.getElementById("resEx8").innerText = "Resultado: " + resultado;
+        }
+
+        // Lógica do Exercício 9: Tabuada com for
+        function resolverEx9() {
+            let numero = document.getElementById("inputEx9").value;
+            let resultadoHtml = ""; // Variável para acumular as linhas da tabuada
+            
+            // O laço for repete de 1 a 10
+            for (let i = 1; i <= 10; i++) {
+                let multiplicacao = numero * i;
+                // Juntamos a string usando a tag <br> para quebrar a linha no HTML
+                resultadoHtml += numero + " x " + i + " = " + multiplicacao + "<br>";
+            }
+            
+            document.getElementById("resEx9").innerHTML = resultadoHtml;
+        }
+    </script>
+</body>
+</html>

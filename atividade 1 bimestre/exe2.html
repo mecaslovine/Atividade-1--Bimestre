@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 2-a) Declare uma constante PI com valor 3.14159. 
+        // Tente atribuir outro valor a PI e 
+        //veja o erro no console. Explique por que isso acontece. 
+        const PI = 3.14159;
+        const PI = 3.15
+        console.log({PI})
+        //Explicação: aparece um erro de sintaxe (Identifier 'PI' has already
+        //been declared). Como a const é uma constante, ou seja, um valor que 
+        //não pode ser reatribuído, o javascript bloqueia a execução. 
+
+
+        //2-b) Declare uma constante SemanasDoAno sem atribuir valor. 
+        // Na linha seguinte atribua o valor 52. O que ocorre?
+        const SemanasDoAno;
+        SemanasDoAno = 52;
+        //Explicação: a regra do JavaScript exige que toda const 
+        //obrigatoriamente receba um valor no mesmo momento em que é declarada.
+
+    </script>
+</body>
+</html>
